@@ -52,6 +52,9 @@ export function encode(input, alphabet, maxline) {
   if(maxline !== undefined && typeof maxline !== 'number') {
     throw new TypeError('"maxline" must be a number.');
   }
+  if(input.length === 0) {
+    return '';
+  }
 
   let output = '';
 
@@ -104,6 +107,9 @@ export function decode(input, alphabet) {
   }
   if(typeof alphabet !== 'string') {
     throw new TypeError('"alphabet" must be a string.');
+  }
+  if(input.length === 0) {
+    return new Uint8Array();
   }
 
   let table = _reverseAlphabets[alphabet];
