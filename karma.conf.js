@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2019 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2011-2020 Digital Bazaar, Inc. All rights reserved.
  */
 module.exports = function(config) {
   // bundler to test: webpack, browserify
