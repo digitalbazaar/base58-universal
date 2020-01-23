@@ -70,6 +70,17 @@ const encoded = encode(input);
 const input2 = Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 const encoded2 = encode(input2, 8);
 // > 4HUtbHhN\r\n2TkpR
+
+// Browsers use global TextEncoder to convert strings
+const input3 = new TextEncoder().encode('abc');
+const encoded3 = encode(input3);
+// > ZiCa
+
+// Node.js uses util.TextEncoder to convert strings
+const nodeTextEncoder = require('util').TextEncoder;
+const input4 = new nodeTextEncoder().encode('abc');
+const encoded4 = encode(input4);
+// > ZiCa
 ```
 
 ### Decoding
