@@ -2,30 +2,14 @@
  * Copyright (c) 2011-2020 Digital Bazaar, Inc. All rights reserved.
  */
 module.exports = function(config) {
-  // bundler to test: webpack, browserify
-  const bundler = process.env.BUNDLER || 'webpack';
-
-  const frameworks = ['mocha'];
-  // main bundle preprocessors
-  const preprocessors = ['babel'];
-
-  if(bundler === 'browserify') {
-    frameworks.push(bundler);
-    preprocessors.push(bundler);
-  } else if(bundler === 'webpack') {
-    preprocessors.push(bundler);
-    preprocessors.push('sourcemap');
-  } else {
-    throw Error('Unknown bundler');
-  }
-
   config.set({
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
     // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks,
+    frameworks: [
+      'mocha'
+    ],
 
     // list of files / patterns to load in the browser
     files: [
@@ -43,12 +27,15 @@ module.exports = function(config) {
     // available preprocessors:
     // https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      //'tests/*.js': ['webpack', 'babel'] //preprocessors
-      'tests/*.js': preprocessors
+      'tests/*.js': [
+        'babel',
+        'webpack',
+        'sourcemap'
+      ]
     },
 
     webpack: {
-      mode: 'production',
+      mode: 'development',
       devtool: 'inline-source-map',
       module: {
         rules: [
@@ -77,11 +64,6 @@ module.exports = function(config) {
         crypto: false,
         setImmediate: false
       }
-    },
-
-    browserify: {
-      debug: true
-      //transform: ['uglifyify']
     },
 
     // test results reporter to use
