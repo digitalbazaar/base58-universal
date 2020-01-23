@@ -1,6 +1,6 @@
 {
   "name": "base58-universal",
-  "version": "1.0.0-0",
+  "version": "0.0.1-0",
   "description": "Encode/decode using \"The Base58 Encoding Scheme\".",
   "homepage": "https://github.com/digitalbazaar/base58-universal",
   "author": {
