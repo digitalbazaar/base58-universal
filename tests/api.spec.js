@@ -33,8 +33,35 @@ const bitcoinVectors = [
 ].map(([hexString, result]) => [_fromHexString(hexString), result]);
 /* eslint-enable max-len */
 
-const testVectors = [
+// tests from README.md
+const readmeVectors = [
   // from spec
+  [
+    [1, 2, 3, 4],
+    '2VfUX'
+  ],
+  [
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    '4HUtbHhN2TkpR',
+  ],
+  [
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    '4HUtbHhN2TkpR',
+    20
+  ],
+  [
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    '4HUtbHhN\r\n2TkpR',
+    8
+  ],
+  [
+    [0x00, 0x00, 0x28, 0x7f, 0xb4, 0xcd],
+    '11233QC4'
+  ],
+];
+
+// test from the spec
+const specVectors = [
   [
     'Hello World!',
     '2NEpo7TZRRrLZSi2U'
@@ -44,49 +71,42 @@ const testVectors = [
     'USm3fpXnKG5EUBx2ndxBDMPVciP5hGey2Jh4NDv6gmeo1LkMeiKrLJUUBk6Z'
   ],
   [
+    _fromHexString('0000287fb4cd'),
+    '11233QC4'
+  ],
+  [
+    // same as hex string above
     [0x00, 0x00, 0x28, 0x7f, 0xb4, 0xcd],
     '11233QC4'
   ],
-  // misc
-  [
-    [],
-    ''
-  ],
-  [
-    '',
-    ''
-  ],
-  [
-    'a',
-    '2g'
-  ],
-  [
-    'ab',
-    '8Qq'
-  ],
-  [
-    'abc',
-    'ZiCa'
-  ],
-  [
-    [0x00],
-    '1'
-  ],
-  [
-    [0x00, 0x00],
-    '11'
-  ],
-  ...bitcoinVectors
-].map(([data, result]) => [_toUint8Array(data), result]);
+];
+
+// misc tests
+const miscVectors = [
+  [[], ''],
+  ['', ''],
+  ['a', '2g'],
+  ['ab', '8Qq'],
+  ['abc', 'ZiCa'],
+  [[0x00], '1'],
+  [[0x00, 0x00], '11']
+];
+
+const testVectors = [
+  ...bitcoinVectors,
+  ...readmeVectors,
+  ...specVectors,
+  ...miscVectors
+].map(([data, result, maxline]) => [_toUint8Array(data), result, maxline]);
 
 describe('base58-universal APIs', () => {
   describe('encode', () => {
     it('should properly encode', async () => {
       /* eslint-disable-next-line no-unused-vars */
-      const results = testVectors.map(([input, _]) => {
+      const results = testVectors.map(([input, _, maxline]) => {
         return [
           input,
-          encode(input)
+          encode(input, maxline)
         ];
       });
       results.forEach((r, i) => {
