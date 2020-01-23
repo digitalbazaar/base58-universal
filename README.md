@@ -42,10 +42,11 @@ npm install
 
 ## Usage
 
-The library can be used via CommonJS or ESM:
+The library can be loaded with CommonJS or ESM:
 
 ```js
 const {encode, decode} = require('base58-universal');
+````
 
 ```js
 import {encode, decode} from 'base58-universal';
@@ -64,11 +65,11 @@ import {encode} from 'base58-universal';
 
 const input = Uint8Array([1, 2, 3, 4]);
 const encoded = encode(input);
-// >>> ...
+// > 2VfUX
 
 const input2 = Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 const encoded2 = encode(input2, 8);
-// >>> ...
+// > 4HUtbHhN\r\n2TkpR
 ```
 
 ### Decoding
@@ -80,13 +81,16 @@ const encoded2 = encode(input2, 8);
 ```js
 import {decode} from 'base58-universal';
 
-const input = '...';
+const input = '2VfUX';
 const decoded = decode(input);
-// >>> ...
+// > Uint8Array [ 1, 2, 3, 4 ]
 
-const input2 = '...';
+const input2 = '4HUtbHhN\r\n2TkpR';
 const decoded2 = decode(input2);
-// >>> ...
+// > Uint8Array [
+//   1, 2, 3, 4,  5,
+//   6, 7, 8, 9, 10
+// ]
 ```
 
 ## Contribute
