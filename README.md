@@ -63,24 +63,13 @@ import {encode, decode} from 'base58-universal';
 ```js
 import {encode} from 'base58-universal';
 
-const input = Uint8Array([1, 2, 3, 4]);
-const encoded = encode(input);
+const input1 = Uint8Array([1, 2, 3, 4]);
+const encoded1 = encode(input1);
 // > 2VfUX
 
 const input2 = Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 const encoded2 = encode(input2, 8);
 // > 4HUtbHhN\r\n2TkpR
-
-// Browsers use global TextEncoder to convert strings
-const input3 = new TextEncoder().encode('abc');
-const encoded3 = encode(input3);
-// > ZiCa
-
-// Node.js uses util.TextEncoder to convert strings
-const nodeTextEncoder = require('util').TextEncoder;
-const input4 = new nodeTextEncoder().encode('abc');
-const encoded4 = encode(input4);
-// > ZiCa
 ```
 
 ### Decoding
@@ -92,16 +81,63 @@ const encoded4 = encode(input4);
 ```js
 import {decode} from 'base58-universal';
 
-const input = '2VfUX';
-const decoded = decode(input);
+const input3 = '2VfUX';
+const decoded3 = decode(input3);
 // > Uint8Array [ 1, 2, 3, 4 ]
 
-const input2 = '4HUtbHhN\r\n2TkpR';
-const decoded2 = decode(input2);
+const input4 = '4HUtbHhN\r\n2TkpR';
+const decoded4 = decode(input4);
 // > Uint8Array [
 //   1, 2, 3, 4,  5,
 //   6, 7, 8, 9, 10
 // ]
+```
+
+## String Handling
+
+This library uses [Uint8Array][] for encoder input and decoder output.
+Conversion to and from strings can be done with a variety of tools.
+
+### Browser
+
+- [TextEncoder][] and [TextDecoder][] using the [Encoding][] standard.
+
+```js
+const input5 = new TextEncoder().encode('abc');
+const encoded5 = encode(input5);
+// > ZiCa
+
+const decoded6 = decoded(encoded5);
+const output6 = new TextDecoder().decode(decoded6);
+// > abc
+```
+
+### Node.js
+
+- [util.TextEncoder][] and [util.TextDecoder][] using the [Encoding][]
+  standard.
+- [Buffer][] `from` and `toString` with encoding options.
+
+```js
+// Using TextEncoder/TextDecoder
+const {TextEncoder, TextDecoder} = require('util');
+
+const input7 = new TextEncoder().encode('abc');
+const encoded7 = encode(input7);
+// > ZiCa
+
+const decoded8 = decoded(encoded7);
+const output8 = new TextDecoder().decode(decoded8);
+// > abc
+
+// Using Buffer (which is a Uint8Array)
+const input9 = Buffer.from('616263', 'hex');
+const encoded9 = encode(input9);
+const decoded9 = decode(encoded9);
+Buffer.from(decoded9).toString();
+// > abc
+Buffer.from(decoded9).toString('hex');
+// > 616263
 ```
 
 ## Contribute
@@ -127,5 +163,12 @@ Digital Bazaar: support@digitalbazaar.com
 Encoder/decoder original implementation from
 [base-x](https://github.com/cryptocoinjs/base-x) under the MIT License.
 
-[The Base58 Encoding Scheme]: https://github.com/digitalbazaar/base58-spec
+[Buffer]: https://nodejs.org/api/buffer.html
+[Encoding]: https://encoding.spec.whatwg.org/
 [Node.js]: https://nodejs.org/
+[TextDecoder]: https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder
+[TextEncoder]: https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder
+[The Base58 Encoding Scheme]: https://github.com/digitalbazaar/base58-spec
+[Uint8Array]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array
+[util.TextDecoder]: https://nodejs.org/api/util.html#util_class_util_textdecoder
+[util.TextEncoder]: https://nodejs.org/api/util.html#util_class_util_textencoder
