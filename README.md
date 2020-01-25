@@ -93,12 +93,12 @@ const decoded4 = decode(input4);
 // ]
 ```
 
-## String Handling
+### String Handling
 
 This library uses [Uint8Array][] for encoder input and decoder output.
 Conversion to and from strings can be done with a variety of tools.
 
-### Browser
+#### Browser
 
 - [TextEncoder][] and [TextDecoder][] using the [Encoding][] standard.
 
@@ -112,7 +112,7 @@ const output6 = new TextDecoder().decode(decoded6);
 // > abc
 ```
 
-### Node.js
+#### Node.js
 
 - [util.TextEncoder][] and [util.TextDecoder][] using the [Encoding][]
   standard.
