@@ -151,10 +151,5 @@ export function decode(input, alphabet) {
     bytes.push(0);
   }
 
-  // FIXME: remove
-  //if(typeof Buffer !== 'undefined') {
-  //  return Buffer.from(bytes.reverse());
-  //}
-
   return new Uint8Array(bytes.reverse());
 }
