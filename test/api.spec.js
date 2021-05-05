@@ -7,10 +7,6 @@ const chai = require('chai').use(require('chai-bytes'));
 const env = require('./env');
 const should = chai.should();
 
-if(env.nodejs) {
-  global.TextEncoder = require('util').TextEncoder;
-}
-
 const {encode, decode} = require('..');
 
 /* eslint-disable max-len */
