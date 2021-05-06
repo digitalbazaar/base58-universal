@@ -20,6 +20,8 @@
   "files": [
     "dist",
     "lib",
+    "rollup.config.js",
+    "build-dist.sh",
     "README.md",
     "LICENSE"
   ],
