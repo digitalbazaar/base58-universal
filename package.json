@@ -77,7 +77,7 @@
   "scripts": {
     "rollup": "rollup -c rollup.config.js",
     "build": "npm run clear && npm run rollup && ./build-dist.sh",
-    "clear": "rimraf dist/*",
+    "clear": "rimraf dist && mkdir dist",
     "coverage": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text-summary npm run test-node",
     "coverage-report": "nyc report",
     "prepare": "npm run build",
