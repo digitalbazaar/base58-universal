@@ -1,9 +1,7 @@
 language: node_js
 node_js:
-  - "8"
-  - "10"
   - "12"
-  - "node"
+  - "14"
 sudo: false
 script:
   - if [ "x$BUNDLER" = "x" ]; then npm run test; fi
@@ -12,7 +10,7 @@ script:
 matrix:
   include:
   - name: "Browser Unit Tests"
-    node_js: "12"
+    node_js: "14"
     env: BUNDLER=webpack
 notifications:
   email:
