@@ -13,9 +13,9 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      './tests/test-karma.js',
+      './test/test-karma.js',
       {
-        pattern: 'tests/*.spec.js',
+        pattern: 'test/*.spec.js',
         watched: false, served: true, included: true
       }
     ],
@@ -27,7 +27,7 @@ module.exports = function(config) {
     // available preprocessors:
     // https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'tests/*.js': [
+      'test/*.js': [
         'babel',
         'webpack',
         'sourcemap'
@@ -93,17 +93,6 @@ module.exports = function(config) {
     // https://npmjs.org/browse/keyword/karma-launcher
     //browsers: ['ChromeHeadless', 'Chrome', 'Firefox', 'Safari'],
     browsers: ['ChromeHeadless'],
-
-    customLaunchers: {
-      IE9: {
-        base: 'IE',
-        'x-ua-compatible': 'IE=EmulateIE9'
-      },
-      IE8: {
-        base: 'IE',
-        'x-ua-compatible': 'IE=EmulateIE8'
-      }
-    },
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits

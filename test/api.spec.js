@@ -1,17 +1,10 @@
 /*!
  * Copyright (c) 2020 Digital Bazaar, Inc. All rights reserved.
  */
-'use strict';
-
-const chai = require('chai').use(require('chai-bytes'));
-const env = require('./env');
+import chai from 'chai';
 const should = chai.should();
 
-if(env.nodejs) {
-  global.TextEncoder = require('util').TextEncoder;
-}
-
-const {encode, decode} = require('..');
+import {encode, decode} from '../lib/index';
 
 /* eslint-disable max-len */
 // https://github.com/bitcoin/bitcoin/blob/master/src/test/data/base58_encode_decode.json
@@ -110,7 +103,7 @@ describe('base58-universal APIs', () => {
         ];
       });
       results.forEach((r, i) => {
-        r[0].should.equalBytes(testVectors[i][0]);
+        r[0].should.eql(testVectors[i][0]);
         r[1].should.equal(testVectors[i][1]);
       });
     });
@@ -139,7 +132,7 @@ describe('base58-universal APIs', () => {
         ];
       });
       results.forEach((r, i) => {
-        r[0].should.equalBytes(testVectors[i][0]);
+        r[0].should.eql(testVectors[i][0]);
         r[1].should.equal(testVectors[i][1]);
       });
     });
@@ -169,4 +162,3 @@ function _fromHexString(hexString) {
     .match(/.{1,2}/g)
     .map(byte => parseInt(byte, 16)));
 }
-
