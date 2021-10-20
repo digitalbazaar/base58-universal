@@ -107,7 +107,7 @@ const input5 = new TextEncoder().encode('abc');
 const encoded5 = encode(input5);
 // > ZiCa
 
-const decoded6 = decoded(encoded5);
+const decoded6 = decode(encoded5);
 const output6 = new TextDecoder().decode(decoded6);
 // > abc
 ```
@@ -126,7 +126,7 @@ const input7 = new TextEncoder().encode('abc');
 const encoded7 = encode(input7);
 // > ZiCa
 
-const decoded8 = decoded(encoded7);
+const decoded8 = decode(encoded7);
 const output8 = new TextDecoder().decode(decoded8);
 // > abc
 
