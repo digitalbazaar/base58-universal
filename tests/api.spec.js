@@ -5,7 +5,6 @@ import chai from 'chai';
 import chaiBytes from 'chai-bytes';
 chai.use(chaiBytes);
 const should = chai.should();
-import {TextEncoder} from './util.js';
 
 import {encode, decode} from '../main.js';
 
