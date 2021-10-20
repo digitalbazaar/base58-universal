@@ -114,14 +114,11 @@ const output6 = new TextDecoder().decode(decoded6);
 
 #### Node.js
 
-- [util.TextEncoder][] and [util.TextDecoder][] using the [Encoding][]
+- [util.TextEncoder][] and [util.TextDecoder][] globals using the [Encoding][]
   standard.
 - [Buffer][] `from` and `toString` with encoding options.
 
 ```js
-// Using TextEncoder/TextDecoder
-const {TextEncoder, TextDecoder} = require('util');
-
 const input7 = new TextEncoder().encode('abc');
 const encoded7 = encode(input7);
 // > ZiCa

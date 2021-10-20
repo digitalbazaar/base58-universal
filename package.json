@@ -23,9 +23,6 @@
     "import": "./main.js",
     "require": "./index.cjs"
   },
-  "browser": {
-    "./tests/util.js": "./tests/util-browser.js"
-  },
   "files": [
     "baseN.js",
     "index.cjs",

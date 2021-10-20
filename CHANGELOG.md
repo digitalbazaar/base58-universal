@@ -15,7 +15,6 @@
 - Change `.js` to `.cjs` as needed.
 - Move testing from Travis CI to GitHub Actions.
 - Update dependencies.
-- Switch test environment detection to node/browser specific files.
 - Switch tests to ESM.
 
 ## 1.0.0 - 2020-01-24
