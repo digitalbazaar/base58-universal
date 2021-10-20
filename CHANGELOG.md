@@ -7,9 +7,9 @@
   CommonJS code.
 
 ### Changed
-- **BREAKING**: Update Node.js requirement to v10. Due to modern tools dropping
-  older Node.js version support. The code itself may still work with older
-  Node.js versions.
+- **BREAKING**: Update Node.js requirement to v12. Due to modern test tools
+  dropping older Node.js version support. The code itself may still work with
+  older Node.js versions.
 - Set package `type` to `module`.
 - Add package `exports` for `import` and `require`.
 - Change `.js` to `.cjs` as needed.
