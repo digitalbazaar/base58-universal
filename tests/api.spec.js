@@ -1,17 +1,13 @@
 /*!
  * Copyright (c) 2020 Digital Bazaar, Inc. All rights reserved.
  */
-'use strict';
-
-const chai = require('chai').use(require('chai-bytes'));
-const env = require('./env');
+import chai from 'chai';
+import chaiBytes from 'chai-bytes';
+chai.use(chaiBytes);
 const should = chai.should();
+import {TextEncoder} from './util.js';
 
-if(env.nodejs) {
-  global.TextEncoder = require('util').TextEncoder;
-}
-
-const {encode, decode} = require('..');
+import {encode, decode} from '../main.js';
 
 /* eslint-disable max-len */
 // https://github.com/bitcoin/bitcoin/blob/master/src/test/data/base58_encode_decode.json
@@ -160,6 +156,7 @@ function _toUint8Array(data) {
   return data;
 }
 
+/* eslint-disable-next-line max-len */
 // https://stackoverflow.com/questions/38987784/how-to-convert-a-hexadecimal-string-to-uint8array-and-back-in-javascript
 function _fromHexString(hexString) {
   if(hexString === '') {
