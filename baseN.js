@@ -9,6 +9,7 @@
  * The MIT License (MIT)
  *
  * Copyright base-x contributors (c) 2016
+ * Copyright (c) 2019-2021 Digital Bazaar, Inc. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +29,6 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-'use strict';
 
 // baseN alphabet indexes
 const _reverseAlphabets = {};
@@ -58,30 +58,30 @@ export function encode(input, alphabet, maxline) {
 
   let output = '';
 
-  let i = 0;
-  const base = alphabet.length;
-  const first = alphabet.charAt(0);
-  const digits = [0];
-  for(i = 0; i < input.length; ++i) {
-    let carry = input[i];
-    for(let j = 0; j < digits.length; ++j) {
-      carry += digits[j] << 8;
-      digits[j] = carry % base;
-      carry = (carry / base) | 0;
-    }
+  let num = 0n;
+  let mod;
+  let shift = BigInt(input.length - 1) * 8n;
+  for(let i = 0; i < input.length; ++i) {
+    num += BigInt(input[i]) << shift;
+    shift -= 8n;
+  }
 
-    while(carry > 0) {
-      digits.push(carry % base);
-      carry = (carry / base) | 0;
-    }
+  const digits = [];
+  const base = BigInt(alphabet.length);
+  while(num > 0n) {
+    mod = num % base;
+    digits.push(Number(mod));
+    num = (num / base) | 0n;
   }
 
   // deal with leading zeros
-  for(i = 0; input[i] === 0 && i < input.length - 1; ++i) {
+  const first = alphabet.charAt(0);
+  for(let i = 0; input[i] === 0 && i < input.length; ++i) {
     output += first;
   }
+
   // convert digits to a string
-  for(i = digits.length - 1; i >= 0; --i) {
+  for(let i = digits.length - 1; i >= 0; --i) {
     output += alphabet[digits[i]];
   }
 
