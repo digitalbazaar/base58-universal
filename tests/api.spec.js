@@ -160,6 +160,7 @@ function _toUint8Array(data) {
   return data;
 }
 
+// eslint-disable-next-line max-len
 // https://stackoverflow.com/questions/38987784/how-to-convert-a-hexadecimal-string-to-uint8array-and-back-in-javascript
 function _fromHexString(hexString) {
   if(hexString === '') {

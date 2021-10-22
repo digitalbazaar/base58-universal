@@ -10,4 +10,4 @@ module.exports = {
     // required for BigInt support
     ecmaVersion: 2020
   }
-}
+};
