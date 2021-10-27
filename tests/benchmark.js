@@ -19,7 +19,7 @@ import {
 import crypto from 'crypto';
 
 // max per test loop
-const tMax = 2000000000n;
+const tMax = process.env.TMAX ? BigInt(process.env.TMAX) : 2000000000n;
 
 const csv = !!JSON.parse(process.env.CSV || 'false');
 
