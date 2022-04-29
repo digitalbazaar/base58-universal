@@ -4,6 +4,11 @@ module.exports = {
     node: true
   },
   extends: [
-    'digitalbazaar'
-  ]
-}
+    'digitalbazaar',
+    'digitalbazaar/jsdoc',
+    'digitalbazaar/module'
+  ],
+  rules: {
+    'jsdoc/require-description-complete-sentence': 'off'
+  }
+};
