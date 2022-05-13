@@ -24,7 +24,7 @@ Web browsers with no dependencies.
 
 ## Install
 
-- Node.js 8.3+ required.
+- Node.js >=14 required.
 
 To install for [Node.js][] or in a Web project using npm:
 
@@ -41,12 +41,6 @@ npm install
 ```
 
 ## Usage
-
-The library can be loaded with CommonJS or ESM:
-
-```js
-const {encode, decode} = require('base58-universal');
-````
 
 ```js
 import {encode, decode} from 'base58-universal';
