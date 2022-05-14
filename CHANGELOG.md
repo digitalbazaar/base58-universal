@@ -1,6 +1,6 @@
 # base58-universal ChangeLog
 
-## 2.0.0 - 2022-xx-xx
+## 2.0.0 - 2022-05-13
 
 ### Changed
 - **BREAKING**: Convert to module (ESM).
